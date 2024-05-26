@@ -6,6 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="Yorman Salgado Valencia">
     <meta name="generator" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title></title>
 
     <!-- Bootstrap core CSS -->

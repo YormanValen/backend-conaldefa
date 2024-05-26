@@ -1,6 +1,6 @@
 @extends('layouts.auth-master')
 
-@section('content')
+@section('content') 
     <form method="post" action="{{ route('register.perform') }}" class="container w-25">
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
