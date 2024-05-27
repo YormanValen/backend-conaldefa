@@ -7,6 +7,8 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ResolutionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +26,12 @@ Route::get('/admin', [HomeController::class, 'index'])->name('home.index');
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login.show');
     Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
+    Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
-    Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
+
     Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
 
 });
@@ -37,6 +40,7 @@ Route::get('/noticias/create', [NoticiaController::class, 'create'])->name('noti
 Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.store');
 Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias.index');
 Route::get('/index', [NoticiaController::class, 'getNoticias'])->name('noticias.getNoticias');
+Route::get('/index/{noticia}', [NoticiaController::class, 'getNoticia'])->name('noticias.getNoticia');
 
 // Ruta para mostrar el formulario de edición
 Route::get('/noticias/{noticia}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit');
@@ -46,4 +50,9 @@ Route::put('/noticias/{noticia}', [NoticiaController::class, 'update'])->name('n
 // Ruta para eliminar noticias
 Route::delete('/noticias/{noticia}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
 Route::post('/contact', [ContactController::class, 'send']);
+Route::resource('resolutions', ResolutionController::class);
+Route::get('api/resolutions', [ResolutionController::class, 'getResoluciones']);
+Route::get('api/resolutions/{resolution}', [ResolutionController::class, 'getResolucion']);
+
+
 

@@ -10,10 +10,11 @@
       @auth
 
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="{{ route('home.index') }}" class="nav-link px-2 text-white">Home</a></li>
       <li><a href="{{ route('noticias.index') }}" class="nav-link px-2 text-white">Noticias</a></li>
       <li><a href="#" class="nav-link px-2 text-white">Eventos</a></li>
-      <li><a href="#" class="nav-link px-2 text-white">Resoluciones</a></li>
-      
+      <li><a href="{{ route('resolutions.index') }}" class="nav-link px-2 text-white">Resoluciones</a></li>
+
 
     </ul>
   @endauth
@@ -30,12 +31,13 @@
     <div class="text-end">
       <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Iniciar Sesión</a>
       <a href="http://localhost:4200/#/home" class="btn btn-outline-light me-2">Volver al sitio</a>
+
     </div>
   @endguest
 
       @auth
     <div class="text-end">
-      <a href="{{ route('register.perform') }}" class="btn btn-warning">Registrar nuevo admin</a>
+      <a href="{{ route('register.show') }}" class="btn btn-warning">Registrar nuevo admin</a>
     </div>
   @endauth
 

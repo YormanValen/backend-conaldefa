@@ -4,30 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddImageToNoticiasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('noticias', function (Blueprint $table) {
-            $table->string('imagen')->nullable(); // Añade este campo para la imagen
+            if (!Schema::hasColumn('noticias', 'imagen')) {
+                $table->string('imagen')->nullable();
+            }
         });
-        
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('noticias', function (Blueprint $table) {
-            //
+            if (Schema::hasColumn('noticias', 'imagen')) {
+                $table->dropColumn('imagen');
+            }
         });
     }
-};
+}
+

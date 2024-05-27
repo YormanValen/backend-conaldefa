@@ -93,6 +93,8 @@ class NoticiaController extends Controller
     }
 
 
+
+
     public function getNoticias()
     {
         $noticias = Noticia::all()->map(function ($noticia) {
@@ -101,6 +103,13 @@ class NoticiaController extends Controller
         });
 
         return response()->json($noticias);
+    }
+
+    public function getNoticia($id)
+    {
+        $noticia = Noticia::findOrFail($id);
+        $noticia->imagen_url = asset('storage/' . $noticia->imagen);
+        return response()->json($noticia);
     }
 
 
