@@ -23,14 +23,14 @@
     {{auth()->user()->name}}
     <div class="text-end px-2">
       <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Cerrar Sesión</a>
-      <a href="conaldefa.org" class="btn btn-outline-light me-2">Volver al sitio</a>
+      <a href="https://conaldefa.org" class="btn btn-outline-light me-2">Volver al sitio</a>
     </div>
   @endauth
 
       @guest
     <div class="text-end">
       <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Iniciar Sesión</a>
-      <a href="conaldefa.org" class="btn btn-outline-light me-2">Volver al sitio</a>
+      <a href="https://conaldefa.org" class="btn btn-outline-light me-2">Volver al sitio</a>
 
     </div>
   @endguest
