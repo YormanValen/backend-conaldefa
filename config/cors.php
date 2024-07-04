@@ -17,7 +17,7 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie', '*'], // Puedes ajustar las rutas según sea necesario
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['http://localhost:4200'], // Agrega la URL de tu frontend
+    'allowed_origins' => ['http://localhost:4200', 'https://prueba.conaldefa.org', 'https://conaldefa.org'], // Agrega la URL de tu frontend
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],

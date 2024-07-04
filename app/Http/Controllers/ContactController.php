@@ -18,7 +18,7 @@ class ContactController extends Controller
             'message' => 'required|string|max:1000',
         ]);
 
-        Mail::to('yormanvale@outlook.com')->send(new Notification( $validated ));
+        Mail::to('yormanvalencia123@gmail.com')->send(new Notification( $validated ));
 
         return response()->json(['message' => 'Correo enviado con éxito.']);
     }
