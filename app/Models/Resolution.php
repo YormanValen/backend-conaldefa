@@ -10,5 +10,6 @@ class Resolution extends Model
         'title',
         'content',
         'resolution_date',
+        'pdf_file',
     ];
 }

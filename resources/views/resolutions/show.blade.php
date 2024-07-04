@@ -8,6 +8,12 @@
         <p>{{ $resolution->content }}</p>
         <p><strong>Fecha:</strong> {{ $resolution->resolution_date }}</p>
 
+        @if($resolution->pdf_file)
+            <p>
+                <a class="btn btn-info" href="{{ $resolution->pdf_file }}" target="_blank">Descargar PDF</a>
+            </p>
+        @endif
+
         <div class="btn_ctn">
             <a class="btn btn-primary" href="{{ route('resolutions.edit', $resolution->id) }}">Editar</a>
 
@@ -19,5 +25,4 @@
         </div>
     </div>
 </div>
-
 @endsection

@@ -6,7 +6,7 @@
 
     <h1>Crear Resolución</h1>
 
-    <form class="d-flex flex-column gap-3" method="POST" action="{{ route('resolutions.store') }}">
+    <form class="d-flex flex-column gap-3" method="POST" action="{{ route('resolutions.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="item_ctn">
             <input type="text" placeholder="Titulo de la resolución" class="form-control" name="title" id="title"
@@ -20,8 +20,10 @@
             <label for="resolution_date">Fecha de Publicación:</label>
             <input type="date" class="form-control" required name="resolution_date" id="resolution_date">
         </div>
-
-
+        <div class="item_ctn">
+            <label for="pdf_file">Subir PDF:</label>
+            <input type="file" class="form-control" name="pdf_file" id="pdf_file" required>
+        </div>
         <button class="btn btn-primary" type="submit">Subir Resolución</button>
     </form>
 
