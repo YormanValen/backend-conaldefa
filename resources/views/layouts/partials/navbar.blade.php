@@ -23,7 +23,7 @@
     {{auth()->user()->name}}
     <div class="text-end px-2">
       <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Cerrar Sesión</a>
-      <a href="http://localhost:4200/#/home" class="btn btn-outline-light me-2">Volver al sitio</a>
+      <a href="conaldefa.org" class="btn btn-outline-light me-2">Volver al sitio</a>
     </div>
   @endauth
 
