@@ -6,9 +6,37 @@ use App\Imports\GraduatesImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Log;
+use App\Models\Graduate;
 
 class GraduateController extends Controller
 {
+
+    // Método para buscar un graduado por cédula
+    public function searchByCedula(Request $request)
+    {
+        // Validar que la cédula sea proporcionada
+        $request->validate([
+            'cedula' => 'required|numeric'
+        ]);
+
+        // Buscar el graduado por cédula
+        $graduate = Graduate::where('identificacion', $request->cedula)->first();
+
+        // Verificar si se encontró
+        if ($graduate) {
+            return response()->json([
+                'nombre' => $graduate->nombre,
+                'matriculado' => $graduate->matriculado,
+                'colegiado' => $graduate->colegiado,
+            ]);
+        } else {
+            // Si no se encuentra el graduado, devolver un error
+            return response()->json([
+                'message' => 'Graduado no encontrado',
+            ], 404);
+        }
+    }
+
     public function importGraduates(Request $request)
     {
         Log::info('Importación de egresados iniciada.');

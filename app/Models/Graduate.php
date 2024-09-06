@@ -20,8 +20,16 @@ class Graduate extends Model
         'nombre',
         'identificacion',
         'resolucion',
-        'graduado',
+        'universidad',
         'correo',
         'telefono',
+        'fecha_pago_realizado',
+        'verificado',
+        'valor',
+        'recibido_tarjeta',
+        'colegiado',
+        'matriculado',
+        'acta_grado',
+        'acta_afiliacion',
     ];
 }

@@ -66,3 +66,6 @@ Route::post('/contact', [ContactController::class, 'send']);
 Route::resource('resolutions', ResolutionController::class);
 Route::get('api/resolutions', [ResolutionController::class, 'getResoluciones']);
 Route::get('api/resolutions/{resolution}', [ResolutionController::class, 'getResolucion']);
+
+// Rutas para los egresados
+Route::get('/graduates/search', [GraduateController::class, 'searchByCedula']);
