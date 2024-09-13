@@ -17,20 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('numero')->nullable();
             $table->date('fecha_expedicion');
-            $table->string('nombre');
-            $table->integer('identificacion')->unique();
-            $table->string('resolucion');
-            $table->string('universidad');
-            $table->string('correo');
-            $table->date('fecha_pago_realizado')->nullable();
-            $table->string('telefono')->nullable();
-            $table->boolean('verificado')->default(false); // nuevo campo booleano
-            $table->decimal('valor', 8, 2); // campo para el valor
-            $table->boolean('recibido_tarjeta')->default(false); // nuevo campo booleano
-            $table->boolean('colegiado')->default(false); // nuevo campo booleano
+            $table->string('nombre_y_apellidos');
+            $table->string('cedula')->unique();
+            $table->string('graduado')->nullable();
             $table->boolean('matriculado')->default(false); // nuevo campo booleano
-            $table->boolean('acta_grado')->default(false); // nuevo campo booleano
-            $table->boolean('acta_afiliacion')->default(false); // nuevo campo booleano
+            $table->boolean('colegiado')->default(false)->nullable(); // nuevo campo booleano
+            $table->date('vigencia')->nullable();
+            $table->string('vigencia_certificado')->nullable();
+            $table->string('antecedentes');
             $table->timestamps();
         });
     }

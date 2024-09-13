@@ -16,18 +16,19 @@ class GraduateController extends Controller
     {
         // Validar que la cédula sea proporcionada
         $request->validate([
-            'cedula' => 'required|numeric'
+            'cedula' => 'required|string'
         ]);
 
         // Buscar el graduado por cédula
-        $graduate = Graduate::where('identificacion', $request->cedula)->first();
+        $graduate = Graduate::where('cedula', $request->cedula)->first();
 
         // Verificar si se encontró
         if ($graduate) {
             return response()->json([
-                'nombre' => $graduate->nombre,
+                'nombre' => $graduate->nombre_y_apellidos,
                 'matriculado' => $graduate->matriculado,
                 'colegiado' => $graduate->colegiado,
+                'created_at' => $graduate->created_at,
             ]);
         } else {
             // Si no se encuentra el graduado, devolver un error

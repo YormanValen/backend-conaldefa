@@ -16,29 +16,30 @@ class GraduatesImport implements ToModel, WithHeadingRow
         Log::info('Datos del Excel:', $row);
         Log::info('Claves del Excel:', array_keys($row));
 
+        // Verificar si el campo cédula está vacío
+        if (empty($row['cedula']) || empty($row['nombre_y_apellidos'])) {
+            return null; // Omitir esta fila
+        }
+
+        // Limpiar la cédula eliminando las comas
+        $cedulaSinComas = str_replace(',', '', $row['cedula']);
+
         return Graduate::updateOrCreate(
             [
-                'numero' => $row['numero_tarjeta'],
-                'fecha_expedicion' => Date::excelToDateTimeObject($row['fecha_de_expedicion']),
-                'nombre' => $row['nombre'],
-                'identificacion' => $row['cedula'],
-                'resolucion' => $row['resolucion'],
-                'universidad' => $row['universidad'],
-                'correo' => $row['correo'],
-                'telefono' => $row['telefono'],
-                'fecha_pago_realizado' => isset($row['fecha_pago_realizado']) && is_numeric($row['fecha_pago_realizado'])
-                    ? Date::excelToDateTimeObject($row['fecha_pago_realizado'])
-                    : null,
-                'verificado' => $this->convertToBoolean($row['verificado']),
-                'valor' => $row['valor'],
-                'recibido_tarjeta' => $this->convertToBoolean($row['recibido_de_tarjeta']),
-                'colegiado' => $this->convertToBoolean($row['colegiado']),
+                'numero' => $row['numero'],
+                'fecha_expedicion' => Date::excelToDateTimeObject($row['fecha_expedicion']),
+                'nombre_y_apellidos' => $row['nombre_y_apellidos'],
+                'cedula' => $cedulaSinComas, // Usar la cédula sin comas
+                'graduado' => $row['graduado'],
                 'matriculado' => $this->convertToBoolean($row['matriculado']),
-                'acta_grado' => $this->convertToBoolean($row['acta_de_grado']),
-                'acta_afiliacion' => $this->convertToBoolean($row['acta_de_afiliacion']),
+                'colegiado' => $this->convertToBoolean($row['colegiado']),
+                'vigencia' => Date::excelToDateTimeObject($row['vigencia']),
+                'vigencia_certificado' => ($row['vigencia_certificado']),
+                'antecedentes' => ($row['antecedentes']),
             ]
         );
     }
+
 
     /**
      * Convierte 'x' en true y cualquier otro valor en false.
