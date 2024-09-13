@@ -28,6 +28,10 @@ class GraduateController extends Controller
                 'nombre' => $graduate->nombre_y_apellidos,
                 'matriculado' => $graduate->matriculado,
                 'colegiado' => $graduate->colegiado,
+                'graduado' => $graduate->graduado,
+                'vigencia' => $graduate->vigencia,
+                'antecedentes' => $graduate->antecedentes,
+                'colegiado' => $graduate->colegiado,
                 'created_at' => $graduate->created_at,
             ]);
         } else {
