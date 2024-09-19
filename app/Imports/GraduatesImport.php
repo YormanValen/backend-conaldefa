@@ -34,7 +34,6 @@ class GraduatesImport implements ToModel, WithHeadingRow
                 'matriculado' => $this->convertToBoolean($row['matriculado']),
                 'colegiado' => $this->convertToBoolean($row['colegiado']),
                 'vigencia' => Date::excelToDateTimeObject($row['vigencia']),
-                'vigencia_certificado' => ($row['vigencia_certificado']),
                 'antecedentes' => ($row['antecedentes']),
             ]
         );

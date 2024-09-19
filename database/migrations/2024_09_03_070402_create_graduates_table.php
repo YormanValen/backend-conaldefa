@@ -23,7 +23,6 @@ return new class extends Migration
             $table->boolean('matriculado')->default(false); // nuevo campo booleano
             $table->boolean('colegiado')->default(false)->nullable(); // nuevo campo booleano
             $table->date('vigencia')->nullable();
-            $table->string('vigencia_certificado')->nullable();
             $table->string('antecedentes');
             $table->timestamps();
         });
