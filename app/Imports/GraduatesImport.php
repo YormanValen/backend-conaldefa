@@ -24,20 +24,25 @@ class GraduatesImport implements ToModel, WithHeadingRow
         // Limpiar la cédula eliminando las comas
         $cedulaSinComas = str_replace(',', '', $row['cedula']);
 
+        // Verificar si la fecha es válida antes de convertirla
+        $fechaExpedicion = is_numeric($row['fecha_expedicion']) ? Date::excelToDateTimeObject($row['fecha_expedicion']) : null;
+        $vigencia = is_numeric($row['vigencia']) ? Date::excelToDateTimeObject($row['vigencia']) : null;
+
         return Graduate::updateOrCreate(
             [
                 'numero' => $row['numero'],
-                'fecha_expedicion' => Date::excelToDateTimeObject($row['fecha_expedicion']),
+                'fecha_expedicion' => $fechaExpedicion, // Solo usar la fecha si es válida
                 'nombre_y_apellidos' => $row['nombre_y_apellidos'],
                 'cedula' => $cedulaSinComas, // Usar la cédula sin comas
                 'graduado' => $row['graduado'],
                 'matriculado' => $this->convertToBoolean($row['matriculado']),
                 'colegiado' => $this->convertToBoolean($row['colegiado']),
-                'vigencia' => Date::excelToDateTimeObject($row['vigencia']),
-                'antecedentes' => ($row['antecedentes']),
+                'vigencia' => $vigencia, // Solo usar la fecha si es válida
+                'antecedentes' => $row['antecedentes'],
             ]
         );
     }
+
 
 
     /**
