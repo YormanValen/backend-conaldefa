@@ -11,8 +11,7 @@
 
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       <li><a href="{{ route('home.index') }}" class="nav-link px-2 text-white">Home</a></li>
-      <li><a href="{{ route('noticias.index') }}" class="nav-link px-2 text-white">Noticias</a></li>
-      <li><a href="#" class="nav-link px-2 text-white">Eventos</a></li>
+      <li><a href="{{ route('noticias.index') }}" class="nav-link px-2 text-white">Noticias y eventos</a></li>
       <li><a href="{{ route('resolutions.index') }}" class="nav-link px-2 text-white">Resoluciones</a></li>
       <li><a href="{{ route('importar-egresados') }}" class="nav-link px-2 text-white">Actualizar base de datos de egresados</a></li>
 
