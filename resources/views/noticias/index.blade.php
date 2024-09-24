@@ -3,7 +3,7 @@
 @auth
 @section('content')
 <div class="container">
-    <h1>Noticias</h1>
+    <h1>Noticias o eventos</h1>
     <a href="{{ route('noticias.create') }}" class="btn btn-primary">Crear Nueva Noticia</a>
     <hr>
     @if (session('status'))

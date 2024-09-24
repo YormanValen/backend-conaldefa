@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="container p-3">
-    <h2>Editar Noticia</h2>
+    <h2>Editar Noticia o evento</h2>
     <form class="d-flex flex-column gap-3" enctype="multipart/form-data" action="{{ route('noticias.update', $noticia->id) }}" method="POST">
         @csrf
         @method('PUT')
