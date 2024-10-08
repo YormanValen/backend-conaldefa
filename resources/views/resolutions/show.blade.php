@@ -3,15 +3,15 @@
 @section('content')
 <div class="container p-4 d-flex flex-column gap-1 ">
 
-    <div class="resolucion_item border p-3 rounded">
+    <div class="resolucion_item shadow p-3 border p-3 rounded">
         <h1>{{ $resolution->title }}</h1>
         <p>{{ $resolution->content }}</p>
         <p><strong>Fecha:</strong> {{ $resolution->resolution_date }}</p>
 
         @if($resolution->pdf_file)
-            <p>
-                <a class="btn btn-info" href="{{ $resolution->pdf_file }}" target="_blank">Descargar PDF</a>
-            </p>
+        <p>
+            <a class="btn btn-info" href="{{ asset('storage/' . $resolution->pdf_file) }}" target="_blank">Descargar PDF</a>
+        </p>
         @endif
 
         <div class="btn_ctn">

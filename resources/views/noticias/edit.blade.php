@@ -1,5 +1,15 @@
 @extends('layouts.app-master')
 
+<head>
+    <style>
+        .btns_edit_ctn {
+            display: flex;
+            justify-content: center;
+            gap: 2vw;
+        }
+    </style>
+</head>
+
 @auth
 @section('content')
 
@@ -19,18 +29,21 @@
         </div>
         <div class="form-group">
             <label for="fecha_publicacion">Fecha de Publicación:</label>
-            <input type="date" class="form-control" name="fecha_publicacion" value="{{ $noticia->fecha_publicacion }}">
+            <input type="date" class="form-control" name="fecha_publicacion" value="{{ \Carbon\Carbon::parse($noticia->fecha_publicacion)->format('Y-m-d') }}">
         </div>
 
         <div class="form-group">
             <label for="imagen">Imagen:</label>
             <input type="file" class="form-control" name="imagen" id="imagen">
             @if($noticia->imagen)
-                <img src="{{ asset('storage/' . $noticia->imagen) }}" alt="Imagen actual" style="max-width: 100px; margin-top: 10px;">
+            <img src="{{ asset('storage/' . $noticia->imagen) }}" alt="Imagen actual" style="max-width: 100px; margin-top: 10px;">
             @endif
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a href="{{ route('noticias.index') }}" class="btn btn-danger">Cancelar</a>
+
+        <div class="btns_edit_ctn">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="{{ route('noticias.index') }}" class="btn btn-danger">Cancelar</a>
+        </div>
 
     </form>
 </div>

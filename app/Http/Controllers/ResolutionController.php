@@ -37,7 +37,7 @@ class ResolutionController extends Controller
                 'title' => $request->get('title'),
                 'content' => $request->get('content'),
                 'resolution_date' => $request->get('resolution_date'),
-                'pdf_file' => '/storage/' . $filePath,
+                'pdf_file' => $filePath, // Guardar solo el nombre del archivo
             ]);
 
             $resolution->save();
@@ -45,6 +45,7 @@ class ResolutionController extends Controller
 
         return redirect()->route('resolutions.index')->with('success', 'Resolution created successfully.');
     }
+
 
     public function show(Resolution $resolution)
     {
@@ -56,27 +57,43 @@ class ResolutionController extends Controller
         return view('resolutions.edit', compact('resolution'));
     }
 
-    public function update(Request $request, Resolution $resolution)
+    public function update(Request $request, $id)
     {
+        // Validar los campos
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'resolution_date' => 'required|date',
-            'pdf_file' => 'nullable|mimes:pdf|max:10000', // Valida el archivo PDF
+            'pdf_file' => 'nullable|mimes:pdf|max:2048', // Valida que el archivo sea un PDF y no mayor de 2MB
         ]);
 
+        // Buscar la resolución
+        $resolution = Resolution::findOrFail($id);
+
+        // Actualizar los datos de la resolución
+        $resolution->title = $request->input('title');
+        $resolution->content = $request->input('content');
+        $resolution->resolution_date = $request->input('resolution_date');
+
+        // Verificar si hay un archivo PDF cargado
         if ($request->hasFile('pdf_file')) {
+            // Guardar el nuevo archivo PDF
             $file = $request->file('pdf_file');
             $filename = time() . '_' . $file->getClientOriginalName();
             $filePath = $file->storeAs('uploads', $filename, 'public');
-            $resolution->pdf_file = '/storage/' . $filePath;
+
+            // Actualizar la ruta del PDF en la base de datos
+            $resolution->pdf_file = $filePath;
         }
 
-        $resolution->update($request->except('pdf_file'));
+        // Guardar los cambios
         $resolution->save();
 
-        return redirect()->route('resolutions.index')->with('success', 'Resolution updated successfully.');
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('resolutions.index')->with('success', 'Resolución actualizada correctamente.');
     }
+
+
 
     public function destroy(Resolution $resolution)
     {
