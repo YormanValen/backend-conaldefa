@@ -29,18 +29,19 @@ class GraduatesImport implements ToModel, WithHeadingRow
         $vigencia = is_numeric($row['vigencia']) ? Date::excelToDateTimeObject($row['vigencia']) : null;
 
         return Graduate::updateOrCreate(
+            ['cedula' => $cedulaSinComas], 
             [
                 'numero' => $row['numero'],
-                'fecha_expedicion' => $fechaExpedicion, // Solo usar la fecha si es válida
+                'fecha_expedicion' => $fechaExpedicion,
                 'nombre_y_apellidos' => $row['nombre_y_apellidos'],
-                'cedula' => $cedulaSinComas, // Usar la cédula sin comas
                 'graduado' => $row['graduado'],
                 'matriculado' => $this->convertToBoolean($row['matriculado']),
                 'colegiado' => $this->convertToBoolean($row['colegiado']),
-                'vigencia' => $vigencia, // Solo usar la fecha si es válida
+                'vigencia' => $vigencia,
                 'antecedentes' => $row['antecedentes'],
             ]
         );
+        
     }
 
 
