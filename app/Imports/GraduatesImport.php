@@ -18,11 +18,11 @@ class GraduatesImport implements ToModel, WithHeadingRow
 
         // Verificar si el campo cédula está vacío
         if (empty($row['cedula']) || empty($row['nombre_y_apellidos'])) {
-            return null; // Omitir esta fila
+            return null; 
         }
 
         // Limpiar la cédula eliminando las comas
-        $cedulaSinComas = str_replace(',', '', $row['cedula']);
+        $cedulaSinComas = str_replace('.', '', $row['cedula']);
 
         // Verificar si la fecha es válida antes de convertirla
         $fechaExpedicion = is_numeric($row['fecha_expedicion']) ? Date::excelToDateTimeObject($row['fecha_expedicion']) : null;
