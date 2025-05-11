@@ -33,6 +33,7 @@ class GraduateController extends Controller
                 'antecedentes' => $graduate->antecedentes,
                 'colegiado' => $graduate->colegiado,
                 'created_at' => $graduate->created_at,
+                'updated_at' => $graduate->updated_at,
             ]);
         } else {
             // Si no se encuentra el graduado, devolver un error
